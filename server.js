@@ -3,7 +3,6 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
-
 app.get('/', function(req, res){
   res.sendFile(`${__dirname}/src/index.html`);
 });
@@ -18,8 +17,8 @@ io.on('connection', socket => {
 });
 
 
-http.listen(8080, function(){
-  console.log('listening on *:8080');
+http.listen(1337, function(){
+  console.log('listening on *:1337');
 });
 
 
