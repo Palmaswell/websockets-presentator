@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./server.js",
-    "build": "babel ./src/index.js --out-file ./src/app.js",
+    "build-css": "node-sass --include-path scss src/main.scss src/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "deploy": "npx now"
   },
   "author": "Mauricio Palma <mauricio.palma@sinnerschrader.com>",
@@ -17,7 +18,7 @@
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0"
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0"
   }
 }
