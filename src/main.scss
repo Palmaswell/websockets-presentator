@@ -1,11 +1,10 @@
 :root {
   --dog-width: 100px;
   --interval: 200;
+  --hex-gray: #EAEBEC;
 }
 
 $interval: 200ms;
-$color-gray: #EAEBEC;
-$easing: ease-in-out;
 
 .ball {
   width: 32px;
@@ -13,7 +12,7 @@ $easing: ease-in-out;
   border-radius: 50%;
   margin-top: 4rem;
   z-index: 0;
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -27,37 +26,10 @@ $easing: ease-in-out;
     background: #6E64F0;
     z-index: 1;
   }
-  
+
   &:focus {
     outline: none;
-    
-    &:after {      
-      // animation: bounce $interval * 2 infinite alternate;
-      // animation: bounce calc(var(--interval) * 2ms) infinite alternate;
-    }
-    
-    @keyframes bounce {
-      from {
-        transform: scale(2);
-        animation-timing-function: ease-in;
-      }
-      to {
-        transform: scale(0.8);
-        animation-timing-function: cubic-bezier(0, 0, 0, 1);
-      }
-    }
-    
-    @keyframes bounce-shadow {
-      from {
-        transform: scale(2.5, 2.6) translateY(-50%);
-        animation-timing-function: ease-in;
-      }
-      to {
-        transform: scale(0.5) translateY(0);
-        animation-timing-function: cubic-bezier(0, 0, 0, 1);
-      }
-    }
-    
+
     &:before {
       content: '';
       position: absolute;
@@ -68,8 +40,6 @@ $easing: ease-in-out;
       height: 100%;
       border-radius: 50%;
       background: rgba(black, 0.05);
-      // animation: bounce-shadow $interval * 2 infinite alternate;
-      animation: bounce-shadow calc(var(--interval) * 2ms) infinite alternate;
       z-index: -10;
     }
   }
@@ -79,7 +49,7 @@ $easing: ease-in-out;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
   z-index: 1;
-  
+
   &:before {
     content: '';
     display: block;
@@ -90,7 +60,7 @@ $easing: ease-in-out;
     background: rgba(black, 0.03);
     transform: translateY(-30%) scale(1.5);
   }
-  
+
   * {
     position: absolute;
   }
@@ -98,8 +68,8 @@ $easing: ease-in-out;
 
 .dog-body {
   top: -50%;
-  // animation: dog-body $interval $easing infinite alternate;
-  
+  animation: dog-body calc(var(--interval) * 1ms) ease-in-out infinite alternate;
+
   &:before {
     content: '';
     position: absolute;
@@ -113,8 +83,8 @@ $easing: ease-in-out;
     background: rgba(white, 0.4);
     // transform: rotate(45deg);
     transform-origin: right bottom;
-    animation: dog-tail-blur $interval $interval / 6 $easing infinite alternate both;
-    // animation: dog-tail-blur calc(var(--interval) * 1ms) calc(var(--interval) / 6ms) $easing infinite alternate both;
+    animation: dog-tail-blur $interval $interval / 6 ease-in-out infinite alternate both;
+    // animation: dog-tail-blur calc(var(--interval) * 1ms) calc(var(--interval) / 6ms) ease-in-out infinite alternate both;
   
     @keyframes dog-tail-blur {
       from {
@@ -143,7 +113,7 @@ $easing: ease-in-out;
 
 .dog-head {
   // animation: dog-head $interval * 9 cubic-bezier(0.11, 0.79, 0, 0.99) infinite;
-  
+
   @keyframes dog-head {
     from, to {
       transform: rotate(45deg);
@@ -159,8 +129,8 @@ $easing: ease-in-out;
 
 .dog-torso {
   top: -20%;
-  // animation: dog-torso $interval $easing infinite alternate-reverse;
-  
+  // animation: dog-torso $interval ease-in-out infinite alternate-reverse;
+
   @keyframes dog-torso {
     from {
       transform: translateX(-5%);
@@ -176,7 +146,7 @@ $easing: ease-in-out;
   top: 55%;
   left: 20%;
   z-index: 1;
-  
+
   &:before {
     content: '';
     display: block;
@@ -202,8 +172,8 @@ $easing: ease-in-out;
   border-radius: 50%;
   background: #000;
   z-index: 1;
-  // animation: dog-eye $interval * 9 infinite;
-  
+  animation: dog-eye calc(var(--interval) * 9ms) infinite;
+
   @keyframes dog-eye {
     from, to {
       animation-timing-function: step-end;
@@ -214,10 +184,11 @@ $easing: ease-in-out;
       opacity: 0;
     }
   }
-  
+
   &:first-child {
     left: 0;
   }
+
   &:last-child {
     right: 0;
   }
@@ -231,21 +202,22 @@ $easing: ease-in-out;
   border-bottom-right-radius: 100%;
   background: white;
   bottom: -15%;
-  
-  &:before, &:after {
+
+  &:before,
+  &:after {
     content: '';
     display: block;
     position: absolute;
   }
-  
+
   &:before {
     width: 6px;
     height: 20px;
     bottom: 0;
     left: calc(50% - 3px);
-    background: $color-gray;
+    background: var(--hex-gray);
   }
-  
+
   &:after {
     background: black;
     width: 20px;
@@ -269,8 +241,8 @@ $easing: ease-in-out;
   left: calc(50% - 20px);
   z-index: -1;
   transform-origin: center top;
-  // animation: dog-tongue $interval * 9 -50ms ease-in-out infinite;
-  
+  animation: dog-tongue calc(var(--interval) * 9ms) -50ms ease-in-out infinite;
+
   @keyframes dog-tongue {
     from, to {
       transform: rotate(0);
@@ -285,7 +257,7 @@ $easing: ease-in-out;
       transform: rotate(-20deg);
     }
   }
-  
+
   &:before {
     content: '';
     position: absolute;
@@ -295,8 +267,8 @@ $easing: ease-in-out;
     border-radius: 40px;
 
     background: #FD3163;
-    // animation: dog-tongue-inner $interval / 2 $easing infinite alternate;
-    
+    animation: dog-tongue-inner calc((var(--interval) / 2) * 1ms) ease-in-out infinite alternate;
+
     @keyframes dog-tongue-inner {
       from {
         transform: translateY(5%);
@@ -312,8 +284,8 @@ $easing: ease-in-out;
   width: 40%;
   top: 25%;
   left: 30%;
-  // animation: dog-ears $interval * 9 $interval / 2 ease infinite;
-  
+  animation: dog-ears calc(var(--interval) * 9ms) calc(var(--interval) / 2 * 1ms) ease infinite;
+
   @keyframes dog-ears {
     42.3%, 71.6% {
       transform: rotate(-5deg);
@@ -337,13 +309,13 @@ $easing: ease-in-out;
   bottom: -10px;
   height: 50px;
   width: 50px;
-  background: $color-gray;
+  background: var(--hex-gray);
   animation-duration: calc(var(--interval) * 2ms);
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
-  
+
   &:first-child {
     border-bottom-left-radius: 80%;
     border-top-right-radius: 80%;
@@ -352,7 +324,7 @@ $easing: ease-in-out;
     transform-origin: right bottom;
     transform: rotate(10deg);
   }
-  
+
   &:last-child {
     border-top-left-radius: 80%;
     border-bottom-right-radius: 80%;
@@ -374,8 +346,8 @@ $easing: ease-in-out;
   transform-origin: center bottom;
 
   .dog-tail {
-    animation: dog-tail-segment calc(var(--interval) * 1ms) $easing infinite alternate;
-    
+    animation: dog-tail-segment calc(var(--interval) * 1ms) ease-in-out infinite alternate;
+
     @keyframes dog-tail-segment {
       from {
         transform: rotate(-10deg);
@@ -389,7 +361,7 @@ $easing: ease-in-out;
 
 .dog-body > .dog-tail {
   bottom: 90%;
-  animation: dog-tail calc(var(--interval) * 1ms) $easing infinite alternate;
+  animation: dog-tail calc(var(--interval) * 1ms) ease-in-out infinite alternate;
   
   @keyframes dog-tail {
     from {
@@ -412,7 +384,7 @@ $easing: ease-in-out;
 }
 
 .dog-body, .dog-torso {
-  box-shadow: inset 0 -15px 0 0 $color-gray;
+  box-shadow: inset 0 -15px 0 0 var(--hex-gray);
 }
 
 body {
