@@ -27,9 +27,9 @@ function trainedPup () {
   const update = (coordinate) => {
     socket.on('orientation', coordinate => {
       const motion = {
-        z: (coordinate.y / vpHeight) * 2 - 1,
-        x: (coordinate.x / vpWidth) * 2 - 1,
-        y: (coordinate.y / vpHeight) * 2 - 1,
+        z: coordinate.z / vpHeight,
+        x: coordinate.x / vpHeight,
+        y: coordinate.y / vpHeight,
       }
       root.style.setProperty('--z', motion.z);
       root.style.setProperty('--x', motion.x);
@@ -44,6 +44,11 @@ function trainedPup () {
     handleCoordinate,
     { passive: true }
   );
+  window.addEventListener('devicemotion',
+  (e) => {
+    console.log('device motion', e.acceleration.x)
+  }, { passive: true }
+);
 };
 
 trainedPup();

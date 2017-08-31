@@ -12,6 +12,11 @@ $interval: 200ms;
   border-radius: 50%;
   margin-top: 4rem;
   z-index: 0;
+  //-- Lerp Formula
+  //--  position.x += (targetPosition.x - position.x) * n%;
+  transform: translate(
+    calc((1 -  var(--x)) * .6vw)
+  );
 
   &:after {
     content: '';
