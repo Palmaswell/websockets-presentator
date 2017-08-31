@@ -85,7 +85,7 @@ $interval: 200ms;
     transform-origin: right bottom;
     animation: dog-tail-blur $interval $interval / 6 ease-in-out infinite alternate both;
     // animation: dog-tail-blur calc(var(--interval) * 1ms) calc(var(--interval) / 6ms) ease-in-out infinite alternate both;
-  
+
     @keyframes dog-tail-blur {
       from {
         transform: rotate(0);
@@ -100,7 +100,7 @@ $interval: 200ms;
       }
     }
   }
-  
+
   @keyframes dog-body {
     from {
       transform: translateX(-10%);
@@ -362,7 +362,7 @@ $interval: 200ms;
 .dog-body > .dog-tail {
   bottom: 90%;
   animation: dog-tail calc(var(--interval) * 1ms) ease-in-out infinite alternate;
-  
+
   @keyframes dog-tail {
     from {
       transform: rotate(-45deg);
