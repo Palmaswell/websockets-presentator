@@ -7,7 +7,7 @@
   z-index: 1;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
-  transform: rotate3d(0, 0, 1, calc((((var(--targetX) - var(--x)) * .2) + var(--x)) * 1deg)) scale(1.2);
+  transform: rotate3d(0, 0, 1, calc((((90 - var(--y)) * .2) + var(--y)) * 1deg)) scale(1.2);
   transition: transform 600ms ease-out; }
   .dog:before {
     content: '';

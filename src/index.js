@@ -28,24 +28,25 @@ function trainedPup () {
       const motion = {
         x: orientation.x,
         y: orientation.y,
-        targetX: 60,
-        targetY: 90
+        target: 90
       }
 
-      if (motion.x > 60) {
-        motion.x = 60
+      switch (motion) {
+        case motion.y > 90:
+          motion.y = 90;
+          break;
+        case motion.y < -90:
+          motion.y = -90;
+          break;
       }
-      if (motion.x < -60) {
-        motion.x = -60
-      }
-      if (motion.x < -1 || motion.y < -1) {
-        motion.targetX = -60
-        motion.targetY = -90
+
+      if(motion.y < -1) {
+        motion.target = -90
       }
 
       root.style.setProperty('--x', motion.x);
       root.style.setProperty('--y', motion.y);
-      root.style.setProperty('--targetX', motion.targetX);
+      root.style.setProperty('--target', motion.target);
 
       console.log(motion);
 
