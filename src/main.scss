@@ -6,54 +6,21 @@
 
 $interval: 200ms;
 
-.ball {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin-top: 4rem;
-  z-index: 0;
-  //-- Lerp Formula
-  //--  position.x += (targetPosition.x - position.x) * n%;
-  transform: translate(
-    calc((1 -  var(--x)) * .6vw)
-  );
-
-  &:after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    box-shadow: inset 0 -8px 0 0 rgba(black, 0.2);
-    background: #6E64F0;
-    z-index: 1;
-  }
-
-  &:focus {
-    outline: none;
-
-    &:before {
-      content: '';
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(black, 0.05);
-      z-index: -10;
-    }
-  }
-}
-
 .dog {
+  z-index: 1;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
-  z-index: 1;
+  //-- Lerp Formula
+  //--  position.x += (targetPosition.x - position.x) * n%;
+  //-- Compensating device orientation
+  transform: rotate3d(0, 0, 1,
+    calc((((var(--targetX) - var(--x)) * .2) + var(--x)) * 1deg)
+  ) scale(1.2);
+  // transform: rotate3d(0, 0, 1,
+  //   calc(var(--x) * 1deg)
+  // );
+
+  transition: transform 600ms ease-out;
 
   &:before {
     content: '';

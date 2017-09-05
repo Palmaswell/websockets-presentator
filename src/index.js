@@ -7,48 +7,56 @@ function trainedPup () {
   let ticking = false;
 
   const handleMotion = e => {
-    const acceleration = {
-      z: e.acceleration.x,
-      x: e.acceleration.y,
-      y: e.acceleration.z
+    const orientation = {
+      x: e.beta,
+      y: e.gamma
     }
-    handleTick(acceleration);
+    handleTick(orientation);
   }
 
-  const handleTick = (acceleration) => {
+  const handleTick = (orientation) => {
     if (!ticking) {
       ticking = true;
       requestAnimationFrame(() => {
-        update(acceleration);
+        update(orientation);
       });
     }
   };
 
-  const update = (acceleration) => {
-    socket.on('orientation', acceleration => {
+  const update = (orientation) => {
+    socket.on('orientation', orientation => {
       const motion = {
-        z: acceleration.z,
-        x: acceleration.x,
-        y: acceleration.y,
+        x: orientation.x,
+        y: orientation.y,
+        targetX: 60,
+        targetY: 90
       }
-      root.style.setProperty('--z', motion.z);
+
+      if (motion.x > 60) {
+        motion.x = 60
+      }
+      if (motion.x < -60) {
+        motion.x = -60
+      }
+      if (motion.x < -1 || motion.y < -1) {
+        motion.targetX = -60
+        motion.targetY = -90
+      }
+
       root.style.setProperty('--x', motion.x);
       root.style.setProperty('--y', motion.y);
+      root.style.setProperty('--targetX', motion.targetX);
 
-      console.log(acceleration);
+      console.log(motion);
 
       ticking = false;
     });
-    socket.emit('orientation', acceleration);
+    socket.emit('orientation', orientation);
   }
 
-  window.addEventListener('devicemotion',
+  window.addEventListener('deviceorientation',
     handleMotion, { passive: true }
   );
-  // window.addEventListener('deviceorientation',
-  //   handleMotion,
-  //   { passive: true }
-  // );
 };
 
 trainedPup();
