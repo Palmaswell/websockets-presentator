@@ -58,7 +58,7 @@
     transform: translateX(10%); } }
 
 .dog-head {
-  transform: rotate3d(1, 0, 0, calc(((((var(--x) / 90) - var(--x)) * .02) + var(--x)) * 1deg));
+  transform: rotate3d(1, 0, 0, calc(((((var(--x) / 90) - var(--x)) * .02) + var(--x)) * 1deg)) translateY(-20%);
   transform-style: preserve-3d;
   transition: transform 500ms ease-out; }
 
