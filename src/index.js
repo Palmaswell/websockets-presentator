@@ -25,21 +25,11 @@ function trainedPup () {
 
   const update = (orientation) => {
     socket.on('orientation', orientation => {
-      const motion = {
-        x: orientation.x,
-        y: orientation.y,
-        targetY: 90
-      }
 
-      if(motion.y < -1) {
-        motion.targetY = -90
-      }
+      root.style.setProperty('--x', orientation.x / 2);
+      root.style.setProperty('--y', orientation.y);
 
-      root.style.setProperty('--x', motion.x);
-      root.style.setProperty('--y', motion.y);
-      root.style.setProperty('--targetY', motion.targetY);
-
-      console.log(motion);
+      console.log(orientation);
 
       ticking = false;
     });

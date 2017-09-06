@@ -2,6 +2,8 @@
   --dog-width: 100px;
   --interval: 200;
   --hex-gray: #EAEBEC;
+
+  perspective: 30000px;
 }
 
 $interval: 200ms;
@@ -17,15 +19,16 @@ $interval: 200ms;
   //-- we will lerp 20% of the distance between the balls current position and the mouse position.
   //-- https://codepen.io/rachsmith/post/animation-tip-lerp
   transform: rotate3d(0, 0, 1,
-    calc((((var(--targetY) - var(--y)) * .2) + var(--y)) * 1deg)
+    calc(((((var(--y) / 90) - var(--y)) * .02) + var(--y)) * 1deg)
   ) scale(1.2);
 
   //-- Without Lerp
   // transform: rotate3d(0, 0, 1,
   //   calc(var(--x) * 1deg)
   // );
-
-  transition: transform 800ms ease-out;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-out;
 
   &:before {
     content: '';
@@ -89,10 +92,17 @@ $interval: 200ms;
 }
 
 .dog-head {
-  transform: rotate3d(0, .1, 1,
-    calc((((var(--targetY) - var(--y)) * -.2) + var(--y)) * 1deg)
+  //-- Lerp
+  //-- position.x += (targetPosition.x - position.x) * n%;
+  //-- Compensating device orientation
+  //-- Instead of updating the dog position to the device orientation position
+  //-- we will lerp 20% of the distance between the balls current position and the mouse position.
+  //-- https://codepen.io/rachsmith/post/animation-tip-lerp
+  transform: rotate3d(1, 0, 0,
+    calc(((((var(--x) / 90) - var(--x)) * .02) + var(--x)) * 1deg)
   );
-  transition: transform 400ms ease-out;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-out;
 }
 
 .dog-torso {
@@ -170,6 +180,10 @@ $interval: 200ms;
   border-bottom-right-radius: 100%;
   background: white;
   bottom: -15%;
+
+  &.dog-muzzle {
+    transform-style: flat;
+  }
 
   &:before,
   &:after {

@@ -1,14 +1,17 @@
 :root {
   --dog-width: 100px;
   --interval: 200;
-  --hex-gray: #EAEBEC; }
+  --hex-gray: #EAEBEC;
+  perspective: 30000px; }
 
 .dog {
   z-index: 1;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
-  transform: rotate3d(0, 0, 1, calc((((var(--targetY) - var(--y)) * .2) + var(--y)) * 1deg)) scale(1.2);
-  transition: transform 800ms ease-out; }
+  transform: rotate3d(0, 0, 1, calc(((((var(--y) / 90) - var(--y)) * .02) + var(--y)) * 1deg)) scale(1.2);
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-out; }
   .dog:before {
     content: '';
     display: block;
@@ -55,8 +58,9 @@
     transform: translateX(10%); } }
 
 .dog-head {
-  transform: rotate3d(0, 0.1, 1, calc((((var(--targetY) - var(--y)) * -.2) + var(--y)) * 1deg));
-  transition: transform 400ms ease-out; }
+  transform: rotate3d(1, 0, 0, calc(((((var(--x) / 90) - var(--x)) * .02) + var(--x)) * 1deg));
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-out; }
 
 .dog-torso {
   top: -20%; }
@@ -117,6 +121,8 @@
   border-bottom-right-radius: 100%;
   background: white;
   bottom: -15%; }
+  .dog-muzzle.dog-muzzle {
+    transform-style: flat; }
   .dog-muzzle:before, .dog-muzzle:after {
     content: '';
     display: block;
