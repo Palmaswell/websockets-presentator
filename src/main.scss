@@ -10,17 +10,22 @@ $interval: 200ms;
   z-index: 1;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
-  //-- Lerp Formula
-  //--  position.x += (targetPosition.x - position.x) * n%;
+  //-- Lerp
+  //-- position.x += (targetPosition.x - position.x) * n%;
   //-- Compensating device orientation
+  //-- Instead of updating the dog position to the device orientation position
+  //-- we will lerp 20% of the distance between the balls current position and the mouse position.
+  //-- https://codepen.io/rachsmith/post/animation-tip-lerp
   transform: rotate3d(0, 0, 1,
-    calc((((90 - var(--y)) * .2) + var(--y)) * 1deg)
+    calc((((var(--targetY) - var(--y)) * .2) + var(--y)) * 1deg)
   ) scale(1.2);
+
+  //-- Without Lerp
   // transform: rotate3d(0, 0, 1,
   //   calc(var(--x) * 1deg)
   // );
 
-  transition: transform 600ms ease-out;
+  transition: transform 800ms ease-out;
 
   &:before {
     content: '';
@@ -84,19 +89,10 @@ $interval: 200ms;
 }
 
 .dog-head {
-  // animation: dog-head $interval * 9 cubic-bezier(0.11, 0.79, 0, 0.99) infinite;
-
-  @keyframes dog-head {
-    from, to {
-      transform: rotate(45deg);
-    }
-    33.3% {
-      transform: rotate(-45deg);
-    }
-    66.6% {
-      transform: rotate(0);
-    }
-  }
+  transform: rotate3d(0, .1, 1,
+    calc((((var(--targetY) - var(--y)) * -.2) + var(--y)) * 1deg)
+  );
+  transition: transform 400ms ease-out;
 }
 
 .dog-torso {

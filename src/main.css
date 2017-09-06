@@ -7,8 +7,8 @@
   z-index: 1;
   width: var(--dog-width, 100px);
   height: var(--dog-width, 100px);
-  transform: rotate3d(0, 0, 1, calc((((90 - var(--y)) * .2) + var(--y)) * 1deg)) scale(1.2);
-  transition: transform 600ms ease-out; }
+  transform: rotate3d(0, 0, 1, calc((((var(--targetY) - var(--y)) * .2) + var(--y)) * 1deg)) scale(1.2);
+  transition: transform 800ms ease-out; }
   .dog:before {
     content: '';
     display: block;
@@ -54,13 +54,9 @@
   to {
     transform: translateX(10%); } }
 
-@keyframes dog-head {
-  from, to {
-    transform: rotate(45deg); }
-  33.3% {
-    transform: rotate(-45deg); }
-  66.6% {
-    transform: rotate(0); } }
+.dog-head {
+  transform: rotate3d(0, 0.1, 1, calc((((var(--targetY) - var(--y)) * -.2) + var(--y)) * 1deg));
+  transition: transform 400ms ease-out; }
 
 .dog-torso {
   top: -20%; }
