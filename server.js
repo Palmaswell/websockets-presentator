@@ -11,10 +11,10 @@ app.get('/', function(req, res){
 app.use(express.static('src'));
 
 io.on('connection', socket => {
-  socket.on('chat message', msg => {
-    console.log(msg);
-    io.emit('chat message', msg);
-  });
+  socket.on('orientation', data => {
+    io.emit('orientation', data)
+    console.log(data);
+  })
 });
 
 http.listen(1337, () => {
