@@ -4,7 +4,7 @@ function handleAmbientLight () {
   sensor.start();
 
   sensor.onreading = e => {
-    console.log('e.currentTarget.activated', e.currentTarget.activated);
+
     switch(e.currentTarget.activated) {
       case e.currentTarget.illuminance <= 8:
         console.log(e.currentTarget.illuminance <= 8, 'e.currentTarget.illuminance <= 8')
