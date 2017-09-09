@@ -1,0 +1,138 @@
+@function cssRandom($min: --min, $max: --max) {
+  $randomNum: $min + floor(random() * (($max - $min) + 1));
+  @return #{'#{$randomNum}'};
+}
+
+:root {
+  --one-meter: 3779;
+  --perspective: calc(var(--one-meter) * 60 * 1px);
+  overflow: hidden;
+}
+
+.Room {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  perspective: var(--perspective);
+
+  :nth-child(n) {
+    transform-style: preserve-3d;
+  }
+}
+//-- Lerp Formula
+//-- position += (targetPosition - position) * 0.2;
+.Space {
+  width: 100vw;
+  height: 100vh;
+  perspective: var(--perspective);
+  //-- LERP Formula
+  //-- position += (targetPosition - position) * 0.2;
+
+  //-- Without LERP
+  // transform: rotateX(calc(var(--x)  * 1deg))
+  //   rotateY(calc(var(--y) * 1deg));
+  //-- With LERP
+  transform: rotateX(
+      calc(((1 - var(--x)) * 0.2deg) + var(--x))
+    )
+    rotateY(
+      calc(((1 - var(--y)) * 0.2deg) + var(--y))
+    );
+  //-- Pixelass Transition function
+  //-- https://codepen.io/pixelass/pen/yXeqJv.css
+  transition: transform .2s var(--Ease-easing);
+
+}
+
+.Confetti-filter {
+  background-color: var(--🎊, #0A2463);
+  width: 18px;
+  height: 38px;
+}
+
+.Confetti {
+  position: absolute;
+  left: var(--pos-x);
+  top: var(--pos-y);
+  transform: var(--translateZ)
+    var(--rotation, var(--rotate3d))
+    skew(0)
+    translate3d(
+      calc(((1 - var(--x, 0)) * 20px) + var(--x, 0) * 1px),
+      calc(((1 - var(--y, 0)) * 20px) + var(--y, 0) * 1px),
+      0);
+  //-- Pixelass Transition function
+  //-- https://codepen.io/pixelass/pen/yXeqJv.css
+  transition: transform .2s var(--Ease-easing);
+
+  @for $n from 0 to 101 {
+    &:nth-child(#{$n + 1}) {
+      --pos-x    : calc(#{cssRandom(0, 100)} * 1vw);
+      --pos-y    : calc(#{cssRandom(0, 100)} * 1vh);
+      @if ($n < 61) {
+        --z  : calc(#{cssRandom(-3779 * 10, 0)} * 1px);
+      }
+      @if ($n > 90) {
+        --z  : calc(#{cssRandom(0, 3779 * 10)} * 1px);
+      }
+      --pos-z    : var(--z, calc(#{cssRandom(-10, 10)} * 1px));
+      --skew     : calc(#{cssRandom(-30, 30)} * 1deg);
+
+      --rotate3d: rotate3d(
+        #{cssRandom(-2, 2)},
+        #{cssRandom(-2, 2)},
+        #{cssRandom(-2, 2)},
+        calc(#{cssRandom(0, 360)} * 1deg));
+      --translateZ: translateZ(var(--z, calc(#{cssRandom(-10, 10)} * 1px)));
+    }
+  }
+
+  //-- 10 meters behind the Z-axis
+  &--backDepth {
+    z-index: -1;
+    opacity: .3;
+  }
+
+  &--midDepth,
+  &--frontDepth {
+    z-index: 3;
+  }
+  //-- 10 meters in front of the Z-axis
+  &--frontDepth {
+    .Confetti-filter {
+      filter: blur(4px);
+    }
+    &.Confetti--frontDepth {
+      --rotation: rotate(var(--pos-deg));
+      --skewing: skew(var(--skew));
+    }
+  }
+}
+
+.Confetti {
+  &:nth-child(2n) {
+    --🎊: #48E5C2;
+  }
+
+  &:nth-child(3n) {
+    --🎊: #F0544F;
+  }
+
+  &:nth-child(4n) {
+    --🎊: #2AB7CA;
+  }
+
+  &:nth-child(5n) {
+    --🎊: #FED766;
+  }
+}
+
+.Image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  perspective: 2000;
+  backface-visibility: hidden;
+}
