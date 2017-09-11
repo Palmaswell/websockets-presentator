@@ -1,22 +1,19 @@
 function confetti () {
   const socket = io();
   const root = document.querySelector(':root');
-  const vpWidth = root.getClientRects()[0].width;
-  const vpHeight = root.getClientRects()[0].height;
-
-  let ticking = false;
 
   const handleMotion = e => {
     const position = {
       x: e.beta,
-      y: e.gamma
+      y: e.gamma,
+      ticking: false
     }
     handleTick(position);
   }
 
   const handleTick = (position) => {
-    if (!ticking) {
-      ticking = true;
+    if (!position.ticking) {
+      position.ticking = true;
       requestAnimationFrame(() => {
         update(position);
       });
@@ -34,10 +31,7 @@ function confetti () {
       root.style.setProperty('--x', position.x);
       root.style.setProperty('--y', position.y);
 
-      console.log(position);
-      console.log(maxDegX, 'maxDegX');
-
-      ticking = false;
+      position.ticking = false;
     });
     socket.emit('position', position);
   }
