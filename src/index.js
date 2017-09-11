@@ -1,44 +1,52 @@
-function trainedPup () {
+function trainedLion () {
   const socket = io();
   const root = document.querySelector(':root');
-  const vpWidth = root.getClientRects()[0].width;
-  const vpHeight = root.getClientRects()[0].height;
-
-  let ticking = false;
 
   const handleMotion = e => {
-    const orientation = {
+    const position = {
       x: e.beta,
-      y: e.gamma
+      y: e.gamma,
+      ticking: false
     }
-    handleTick(orientation);
+    handleTick(position);
   }
 
-  const handleTick = (orientation) => {
-    if (!ticking) {
-      ticking = true;
+  const handleTick = (position) => {
+    if (!position.ticking) {
+      position.ticking = true;
       requestAnimationFrame(() => {
-        update(orientation);
+        update(position);
       });
     }
   };
 
-  const update = (orientation) => {
-    socket.on('orientation', orientation => {
+  const update = (position) => {
+    socket.on('position', position => {
+      const maxDegX = position.x < 0 ? -180 : 180;
+      const maxDegY = position.y < 0 ? -90 : 90;
 
-      root.style.setProperty('--x', orientation.x / 2);
-      root.style.setProperty('--y', orientation.y);
+      position.x = (position.x / maxDegX) * 2 - 1;
+      position.y = (position.y / maxDegY) * 2 - 1;
 
-      console.log(orientation);
+      root.style.setProperty('--x', position.y);
+      root.style.setProperty('--y', position.x);
 
-      ticking = false;
+      position.ticking = false;
     });
-    socket.emit('orientation', orientation);
+    socket.emit('position', position);
   }
 
   window.addEventListener('deviceorientation',
-    handleMotion, { passive: true }
+    handleMotion, { capture: true,  passive: true }
   );
+
+  window.addEventListener('mousemove', e => {
+    const x = e.pageX / window.innerWidth * 2 - 1;
+    const y = e.pageY / window.innerHeight * 2 - 1;
+    root.style.setProperty('--x', x);
+    root.style.setProperty('--y', y);
+  },
+  { capture: true,  passive: true });
 };
 
-trainedPup();
+trainedLion();

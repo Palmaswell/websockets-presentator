@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./server.js",
-    "build-css": "node-sass --include-path scss src/main.scss src/main.css",
+    "build-css": "node-sass --include-path scss src/index.scss src/index.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "deploy": "npx now"
   },
