@@ -1,11 +1,21 @@
 body {
-  background: #EEF5DB;
-  height: 100vh;
-  margin: 0;
+  background: #EDEBD7;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  margin: 0;
   overflow: hidden; }
+
+.headline {
+  margin-top: -40px;
+  font-family: "Permanent Marker", sans-serif;
+  font-size: 54px;
+  color: #70566D; }
+  .headline-topline {
+    display: block;
+    font-size: 18px; }
 
 .view {
   height: 400px;
