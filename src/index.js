@@ -2,39 +2,39 @@ function trainedLion () {
   const socket = io();
   const root = document.querySelector(':root');
 
-  const handleMotion = e => {
-    const position = {
-      x: e.beta,
-      y: e.gamma,
-      ticking: false
-    }
-    handleTick(position);
+  const position = {
+    x: 0,
+    y: 0
   }
 
-  const handleTick = (position) => {
-    if (!position.ticking) {
-      position.ticking = true;
-      requestAnimationFrame(() => {
-        update(position);
-      });
-    }
-  };
+  const written = {
+    x: 0,
+    y: 0
+  }
 
-  const update = (position) => {
-    socket.on('position', position => {
+  const handleMotion = e => {
+    position.x = e.beta;
+    position.y = e.gamma;
+  }
+
+  const update = () => {
+    if (position.x !== written.x) {
       const maxDegX = position.x < 0 ? -180 : 180;
+      written.x = position.x;
+
+      root.style.setProperty('--y', (position.x / maxDegX) * 2 - 1);
+    }
+    if (position.y !== written.y) {
       const maxDegY = position.y < 0 ? -90 : 90;
 
-      position.x = (position.x / maxDegX) * 2 - 1;
-      position.y = (position.y / maxDegY) * 2 - 1;
+      root.style.setProperty('--x', (position.y / maxDegY) * 2 - 1);
+    }
 
-      root.style.setProperty('--x', position.y);
-      root.style.setProperty('--y', position.x);
-
-      position.ticking = false;
-    });
+    requestAnimationFrame(update);
     socket.emit('position', position);
   }
+
+  update();
 
   window.addEventListener('deviceorientation',
     handleMotion, { capture: true,  passive: true }
