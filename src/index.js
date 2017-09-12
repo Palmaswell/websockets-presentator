@@ -2,7 +2,7 @@ function trainedLion () {
   const socket = io();
   const root = document.querySelector(':root');
 
-  const position = {
+  const orientation = {
     x: 0,
     y: 0
   }
@@ -13,26 +13,27 @@ function trainedLion () {
   }
 
   const handleMotion = e => {
-    position.x = Math.round(e.beta * 100) / 100;
-    position.y = Math.round(e.gamma * 100) / 100;
+    orientation.x = Math.round(e.beta * 100) / 100;
+    orientation.y = Math.round(e.gamma * 100) / 100;
   }
 
   const update = () => {
-    if (position.x !== written.x) {
-      const maxDegX = position.x < 0 ? -180 : 180;
-      written.x = position.x;
+    if (orientation.x !== written.x) {
+      const maxDegX = orientation.x < 0 ? -180 : 180;
+      written.x = orientation.x;
 
-      root.style.setProperty('--y', (position.x / maxDegX) * 2 - 1);
+      root.style.setProperty('--y', (orientation.x / maxDegX) * 2 - 1);
     }
 
-    if (position.y !== written.y) {
-      const maxDegY = position.y < 0 ? -90 : 90;
+    if (orientation.y !== written.y) {
+      const maxDegY = orientation.y < 0 ? -90 : 90;
 
-      root.style.setProperty('--x', (position.y / maxDegY) * 2 - 1);
+      root.style.setProperty('--x', (orientation.y / maxDegY) * 2 - 1);
     }
 
-    if (position.x !== written.x || position.y !== written.y) {
-      socket.emit('position', position);
+    if (orientation.x !== written.x
+      || orientation.y !== written.y) {
+      socket.emit('orientation', orientation);
     }
 
     requestAnimationFrame(update);
@@ -43,9 +44,9 @@ function trainedLion () {
   window.addEventListener('deviceorientation',
     handleMotion, { capture: true,  passive: true }
   );
-  socket.on('position', (data) => {
-    position.x = data.x;
-    position.y = data.y;
+  socket.on('orientation', (data) => {
+    orientation.x = data.x;
+    orientation.y = data.y;
   });
 
   window.addEventListener('mousemove', e => {
