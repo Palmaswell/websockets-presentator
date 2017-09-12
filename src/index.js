@@ -13,8 +13,8 @@ function trainedLion () {
   }
 
   const handleMotion = e => {
-    position.x = e.beta;
-    position.y = e.gamma;
+    position.x = Math.round(e.beta * 100) / 100;
+    position.y = Math.round(e.gamma * 100) / 100;
   }
 
   const update = () => {
@@ -24,14 +24,18 @@ function trainedLion () {
 
       root.style.setProperty('--y', (position.x / maxDegX) * 2 - 1);
     }
+
     if (position.y !== written.y) {
       const maxDegY = position.y < 0 ? -90 : 90;
 
       root.style.setProperty('--x', (position.y / maxDegY) * 2 - 1);
     }
 
+    if (position.x !== written.x || position.y !== written.y) {
+      socket.emit('position', position);
+    }
+
     requestAnimationFrame(update);
-    socket.emit('position', position);
   }
 
   update();
@@ -39,6 +43,10 @@ function trainedLion () {
   window.addEventListener('deviceorientation',
     handleMotion, { capture: true,  passive: true }
   );
+  socket.on('position', (data) => {
+    position.x = data.x;
+    position.y = data.y;
+  });
 
   window.addEventListener('mousemove', e => {
     const x = e.pageX / window.innerWidth * 2 - 1;
