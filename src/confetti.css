@@ -1,0 +1,967 @@
+:root {
+  --one-meter: 3779;
+  --perspective: calc(var(--one-meter) * 60 * 1px);
+  overflow: hidden;
+}
+
+.Room {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  -webkit-perspective: var(--perspective);
+          perspective: var(--perspective);
+}
+.Room :nth-child(n) {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.Space {
+  width: 100vw;
+  height: 100vh;
+  -webkit-perspective: var(--perspective);
+          perspective: var(--perspective);
+  -webkit-transform: rotateX(calc(((1 - var(--x)) * 0.2deg) + var(--x))) rotateY(calc(((1 - var(--y)) * 0.2deg) + var(--y)));
+          transform: rotateX(calc(((1 - var(--x)) * 0.2deg) + var(--x))) rotateY(calc(((1 - var(--y)) * 0.2deg) + var(--y)));
+  -webkit-transition: -webkit-transform 0.2s var(--Ease-easing);
+  transition: -webkit-transform 0.2s var(--Ease-easing);
+  transition: transform 0.2s var(--Ease-easing);
+  transition: transform 0.2s var(--Ease-easing), -webkit-transform 0.2s var(--Ease-easing);
+}
+
+.Confetti-filter {
+  background-color: var(--🎊, #0A2463);
+  width: 18px;
+  height: 38px;
+}
+
+.Confetti {
+  position: absolute;
+  left: var(--pos-x);
+  top: var(--pos-y);
+  -webkit-transform: var(--translateZ) var(--rotation, var(--rotate3d)) skew(0) translate3d(calc(((1 - var(--x, 0)) * 20px) + var(--x, 0) * 1px), calc(((1 - var(--y, 0)) * 20px) + var(--y, 0) * 1px), 0);
+          transform: var(--translateZ) var(--rotation, var(--rotate3d)) skew(0) translate3d(calc(((1 - var(--x, 0)) * 20px) + var(--x, 0) * 1px), calc(((1 - var(--y, 0)) * 20px) + var(--y, 0) * 1px), 0);
+  -webkit-transition: -webkit-transform 0.2s var(--Ease-easing);
+  transition: -webkit-transform 0.2s var(--Ease-easing);
+  transition: transform 0.2s var(--Ease-easing);
+  transition: transform 0.2s var(--Ease-easing), -webkit-transform 0.2s var(--Ease-easing);
+}
+.Confetti:nth-child(1) {
+  --pos-x: calc(86 * 1vw);
+  --pos-y: calc(32 * 1vh);
+  --z: calc(-11311 * 1px);
+  --pos-z: var(--z, calc(-8 * 1px));
+  --skew: calc(2 * 1deg);
+  --rotate3d: rotate3d(2, -2, 0, calc(121 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti:nth-child(2) {
+  --pos-x: calc(1 * 1vw);
+  --pos-y: calc(74 * 1vh);
+  --z: calc(-29668 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(-18 * 1deg);
+  --rotate3d: rotate3d(0, -1, -2, calc(31 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-2 * 1px)));
+}
+.Confetti:nth-child(3) {
+  --pos-x: calc(35 * 1vw);
+  --pos-y: calc(65 * 1vh);
+  --z: calc(-10471 * 1px);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(-6 * 1deg);
+  --rotate3d: rotate3d(-2, 2, -1, calc(20 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-6 * 1px)));
+}
+.Confetti:nth-child(4) {
+  --pos-x: calc(12 * 1vw);
+  --pos-y: calc(69 * 1vh);
+  --z: calc(-1683 * 1px);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(-14 * 1deg);
+  --rotate3d: rotate3d(2, 1, -2, calc(272 * 1deg));
+  --translateZ: translateZ(var(--z, calc(1 * 1px)));
+}
+.Confetti:nth-child(5) {
+  --pos-x: calc(6 * 1vw);
+  --pos-y: calc(35 * 1vh);
+  --z: calc(-34512 * 1px);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(26 * 1deg);
+  --rotate3d: rotate3d(-2, 2, -2, calc(166 * 1deg));
+  --translateZ: translateZ(var(--z, calc(0 * 1px)));
+}
+.Confetti:nth-child(6) {
+  --pos-x: calc(40 * 1vw);
+  --pos-y: calc(35 * 1vh);
+  --z: calc(-1908 * 1px);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(-22 * 1deg);
+  --rotate3d: rotate3d(1, 1, -1, calc(158 * 1deg));
+  --translateZ: translateZ(var(--z, calc(2 * 1px)));
+}
+.Confetti:nth-child(7) {
+  --pos-x: calc(63 * 1vw);
+  --pos-y: calc(58 * 1vh);
+  --z: calc(-13766 * 1px);
+  --pos-z: var(--z, calc(4 * 1px));
+  --skew: calc(-24 * 1deg);
+  --rotate3d: rotate3d(-1, -1, 2, calc(58 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti:nth-child(8) {
+  --pos-x: calc(55 * 1vw);
+  --pos-y: calc(70 * 1vh);
+  --z: calc(-23049 * 1px);
+  --pos-z: var(--z, calc(-5 * 1px));
+  --skew: calc(2 * 1deg);
+  --rotate3d: rotate3d(-1, 0, 0, calc(305 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(9) {
+  --pos-x: calc(88 * 1vw);
+  --pos-y: calc(50 * 1vh);
+  --z: calc(-27210 * 1px);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(23 * 1deg);
+  --rotate3d: rotate3d(2, -1, -2, calc(160 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-1 * 1px)));
+}
+.Confetti:nth-child(10) {
+  --pos-x: calc(8 * 1vw);
+  --pos-y: calc(83 * 1vh);
+  --z: calc(-12378 * 1px);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(-1, 0, 2, calc(297 * 1deg));
+  --translateZ: translateZ(var(--z, calc(2 * 1px)));
+}
+.Confetti:nth-child(11) {
+  --pos-x: calc(50 * 1vw);
+  --pos-y: calc(88 * 1vh);
+  --z: calc(-19474 * 1px);
+  --pos-z: var(--z, calc(-8 * 1px));
+  --skew: calc(-30 * 1deg);
+  --rotate3d: rotate3d(0, 1, 2, calc(249 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-5 * 1px)));
+}
+.Confetti:nth-child(12) {
+  --pos-x: calc(6 * 1vw);
+  --pos-y: calc(36 * 1vh);
+  --z: calc(-15436 * 1px);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(-22 * 1deg);
+  --rotate3d: rotate3d(2, 0, -1, calc(12 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-9 * 1px)));
+}
+.Confetti:nth-child(13) {
+  --pos-x: calc(3 * 1vw);
+  --pos-y: calc(53 * 1vh);
+  --z: calc(-8248 * 1px);
+  --pos-z: var(--z, calc(0 * 1px));
+  --skew: calc(-4 * 1deg);
+  --rotate3d: rotate3d(-2, -1, 2, calc(238 * 1deg));
+  --translateZ: translateZ(var(--z, calc(7 * 1px)));
+}
+.Confetti:nth-child(14) {
+  --pos-x: calc(55 * 1vw);
+  --pos-y: calc(26 * 1vh);
+  --z: calc(-24979 * 1px);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(30 * 1deg);
+  --rotate3d: rotate3d(-1, -1, -1, calc(240 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(15) {
+  --pos-x: calc(60 * 1vw);
+  --pos-y: calc(10 * 1vh);
+  --z: calc(-8678 * 1px);
+  --pos-z: var(--z, calc(0 * 1px));
+  --skew: calc(19 * 1deg);
+  --rotate3d: rotate3d(0, 1, -2, calc(223 * 1deg));
+  --translateZ: translateZ(var(--z, calc(3 * 1px)));
+}
+.Confetti:nth-child(16) {
+  --pos-x: calc(26 * 1vw);
+  --pos-y: calc(0 * 1vh);
+  --z: calc(-15568 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(11 * 1deg);
+  --rotate3d: rotate3d(2, 0, -2, calc(122 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(17) {
+  --pos-x: calc(25 * 1vw);
+  --pos-y: calc(77 * 1vh);
+  --z: calc(-10706 * 1px);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(5 * 1deg);
+  --rotate3d: rotate3d(2, -1, 1, calc(18 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(18) {
+  --pos-x: calc(62 * 1vw);
+  --pos-y: calc(39 * 1vh);
+  --z: calc(-32892 * 1px);
+  --pos-z: var(--z, calc(4 * 1px));
+  --skew: calc(20 * 1deg);
+  --rotate3d: rotate3d(1, 2, 1, calc(125 * 1deg));
+  --translateZ: translateZ(var(--z, calc(3 * 1px)));
+}
+.Confetti:nth-child(19) {
+  --pos-x: calc(64 * 1vw);
+  --pos-y: calc(79 * 1vh);
+  --z: calc(-23275 * 1px);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(-3 * 1deg);
+  --rotate3d: rotate3d(-2, 0, 2, calc(318 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(20) {
+  --pos-x: calc(21 * 1vw);
+  --pos-y: calc(93 * 1vh);
+  --z: calc(-15819 * 1px);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(26 * 1deg);
+  --rotate3d: rotate3d(1, 2, 1, calc(18 * 1deg));
+  --translateZ: translateZ(var(--z, calc(8 * 1px)));
+}
+.Confetti:nth-child(21) {
+  --pos-x: calc(55 * 1vw);
+  --pos-y: calc(84 * 1vh);
+  --z: calc(-36335 * 1px);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(9 * 1deg);
+  --rotate3d: rotate3d(0, 0, 0, calc(279 * 1deg));
+  --translateZ: translateZ(var(--z, calc(2 * 1px)));
+}
+.Confetti:nth-child(22) {
+  --pos-x: calc(52 * 1vw);
+  --pos-y: calc(74 * 1vh);
+  --z: calc(-33413 * 1px);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(2, -1, 0, calc(334 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(23) {
+  --pos-x: calc(89 * 1vw);
+  --pos-y: calc(68 * 1vh);
+  --z: calc(-13805 * 1px);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(5 * 1deg);
+  --rotate3d: rotate3d(2, -1, -1, calc(6 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-10 * 1px)));
+}
+.Confetti:nth-child(24) {
+  --pos-x: calc(83 * 1vw);
+  --pos-y: calc(99 * 1vh);
+  --z: calc(-17042 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(17 * 1deg);
+  --rotate3d: rotate3d(2, -1, 2, calc(65 * 1deg));
+  --translateZ: translateZ(var(--z, calc(7 * 1px)));
+}
+.Confetti:nth-child(25) {
+  --pos-x: calc(26 * 1vw);
+  --pos-y: calc(94 * 1vh);
+  --z: calc(-34630 * 1px);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(12 * 1deg);
+  --rotate3d: rotate3d(0, -1, 0, calc(247 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(26) {
+  --pos-x: calc(83 * 1vw);
+  --pos-y: calc(13 * 1vh);
+  --z: calc(-14259 * 1px);
+  --pos-z: var(--z, calc(-7 * 1px));
+  --skew: calc(-9 * 1deg);
+  --rotate3d: rotate3d(-2, 2, 0, calc(12 * 1deg));
+  --translateZ: translateZ(var(--z, calc(0 * 1px)));
+}
+.Confetti:nth-child(27) {
+  --pos-x: calc(46 * 1vw);
+  --pos-y: calc(11 * 1vh);
+  --z: calc(-21343 * 1px);
+  --pos-z: var(--z, calc(10 * 1px));
+  --skew: calc(30 * 1deg);
+  --rotate3d: rotate3d(2, 0, -1, calc(227 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(28) {
+  --pos-x: calc(36 * 1vw);
+  --pos-y: calc(75 * 1vh);
+  --z: calc(-15098 * 1px);
+  --pos-z: var(--z, calc(-5 * 1px));
+  --skew: calc(25 * 1deg);
+  --rotate3d: rotate3d(-1, 0, 2, calc(324 * 1deg));
+  --translateZ: translateZ(var(--z, calc(8 * 1px)));
+}
+.Confetti:nth-child(29) {
+  --pos-x: calc(61 * 1vw);
+  --pos-y: calc(16 * 1vh);
+  --z: calc(-28368 * 1px);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(2, 1, 1, calc(2 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(30) {
+  --pos-x: calc(1 * 1vw);
+  --pos-y: calc(66 * 1vh);
+  --z: calc(-11754 * 1px);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(-27 * 1deg);
+  --rotate3d: rotate3d(-1, -2, -1, calc(50 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-2 * 1px)));
+}
+.Confetti:nth-child(31) {
+  --pos-x: calc(51 * 1vw);
+  --pos-y: calc(66 * 1vh);
+  --z: calc(-15864 * 1px);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(-1, 2, 2, calc(75 * 1deg));
+  --translateZ: translateZ(var(--z, calc(1 * 1px)));
+}
+.Confetti:nth-child(32) {
+  --pos-x: calc(44 * 1vw);
+  --pos-y: calc(38 * 1vh);
+  --z: calc(-26198 * 1px);
+  --pos-z: var(--z, calc(-5 * 1px));
+  --skew: calc(19 * 1deg);
+  --rotate3d: rotate3d(0, 2, -2, calc(107 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-10 * 1px)));
+}
+.Confetti:nth-child(33) {
+  --pos-x: calc(11 * 1vw);
+  --pos-y: calc(10 * 1vh);
+  --z: calc(-28349 * 1px);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(-20 * 1deg);
+  --rotate3d: rotate3d(0, 0, 1, calc(104 * 1deg));
+  --translateZ: translateZ(var(--z, calc(7 * 1px)));
+}
+.Confetti:nth-child(34) {
+  --pos-x: calc(2 * 1vw);
+  --pos-y: calc(95 * 1vh);
+  --z: calc(-27062 * 1px);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(-29 * 1deg);
+  --rotate3d: rotate3d(0, 2, 0, calc(295 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(35) {
+  --pos-x: calc(76 * 1vw);
+  --pos-y: calc(12 * 1vh);
+  --z: calc(-35601 * 1px);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(12 * 1deg);
+  --rotate3d: rotate3d(1, 2, 2, calc(43 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(36) {
+  --pos-x: calc(57 * 1vw);
+  --pos-y: calc(10 * 1vh);
+  --z: calc(-33249 * 1px);
+  --pos-z: var(--z, calc(7 * 1px));
+  --skew: calc(14 * 1deg);
+  --rotate3d: rotate3d(2, -2, 0, calc(235 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(37) {
+  --pos-x: calc(9 * 1vw);
+  --pos-y: calc(80 * 1vh);
+  --z: calc(-5949 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(30 * 1deg);
+  --rotate3d: rotate3d(-2, -2, 2, calc(141 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(38) {
+  --pos-x: calc(66 * 1vw);
+  --pos-y: calc(47 * 1vh);
+  --z: calc(-32886 * 1px);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(-28 * 1deg);
+  --rotate3d: rotate3d(-2, 0, 0, calc(270 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(39) {
+  --pos-x: calc(31 * 1vw);
+  --pos-y: calc(86 * 1vh);
+  --z: calc(-7288 * 1px);
+  --pos-z: var(--z, calc(2 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(1, -2, 1, calc(197 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(40) {
+  --pos-x: calc(25 * 1vw);
+  --pos-y: calc(100 * 1vh);
+  --z: calc(-23498 * 1px);
+  --pos-z: var(--z, calc(-4 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(2, 2, -2, calc(238 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-2 * 1px)));
+}
+.Confetti:nth-child(41) {
+  --pos-x: calc(58 * 1vw);
+  --pos-y: calc(46 * 1vh);
+  --z: calc(-14778 * 1px);
+  --pos-z: var(--z, calc(7 * 1px));
+  --skew: calc(20 * 1deg);
+  --rotate3d: rotate3d(-1, -1, 0, calc(306 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-9 * 1px)));
+}
+.Confetti:nth-child(42) {
+  --pos-x: calc(26 * 1vw);
+  --pos-y: calc(42 * 1vh);
+  --z: calc(-25567 * 1px);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(-7 * 1deg);
+  --rotate3d: rotate3d(1, 0, -2, calc(142 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-5 * 1px)));
+}
+.Confetti:nth-child(43) {
+  --pos-x: calc(58 * 1vw);
+  --pos-y: calc(9 * 1vh);
+  --z: calc(-14333 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(21 * 1deg);
+  --rotate3d: rotate3d(-1, 2, -2, calc(71 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(44) {
+  --pos-x: calc(79 * 1vw);
+  --pos-y: calc(13 * 1vh);
+  --z: calc(-23553 * 1px);
+  --pos-z: var(--z, calc(5 * 1px));
+  --skew: calc(26 * 1deg);
+  --rotate3d: rotate3d(0, -2, 1, calc(121 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(45) {
+  --pos-x: calc(83 * 1vw);
+  --pos-y: calc(80 * 1vh);
+  --z: calc(-24019 * 1px);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(-11 * 1deg);
+  --rotate3d: rotate3d(0, -2, -1, calc(141 * 1deg));
+  --translateZ: translateZ(var(--z, calc(6 * 1px)));
+}
+.Confetti:nth-child(46) {
+  --pos-x: calc(10 * 1vw);
+  --pos-y: calc(24 * 1vh);
+  --z: calc(-19134 * 1px);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(-2, 0, -2, calc(131 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(47) {
+  --pos-x: calc(23 * 1vw);
+  --pos-y: calc(65 * 1vh);
+  --z: calc(-28247 * 1px);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(-8 * 1deg);
+  --rotate3d: rotate3d(0, -1, 0, calc(247 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-6 * 1px)));
+}
+.Confetti:nth-child(48) {
+  --pos-x: calc(14 * 1vw);
+  --pos-y: calc(47 * 1vh);
+  --z: calc(-36821 * 1px);
+  --pos-z: var(--z, calc(4 * 1px));
+  --skew: calc(-27 * 1deg);
+  --rotate3d: rotate3d(2, -1, -2, calc(134 * 1deg));
+  --translateZ: translateZ(var(--z, calc(8 * 1px)));
+}
+.Confetti:nth-child(49) {
+  --pos-x: calc(22 * 1vw);
+  --pos-y: calc(46 * 1vh);
+  --z: calc(-1788 * 1px);
+  --pos-z: var(--z, calc(3 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(0, -2, 2, calc(325 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(50) {
+  --pos-x: calc(3 * 1vw);
+  --pos-y: calc(43 * 1vh);
+  --z: calc(-4616 * 1px);
+  --pos-z: var(--z, calc(-4 * 1px));
+  --skew: calc(-8 * 1deg);
+  --rotate3d: rotate3d(-1, -2, 2, calc(257 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-6 * 1px)));
+}
+.Confetti:nth-child(51) {
+  --pos-x: calc(19 * 1vw);
+  --pos-y: calc(62 * 1vh);
+  --z: calc(-3256 * 1px);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(25 * 1deg);
+  --rotate3d: rotate3d(2, 2, 2, calc(219 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-8 * 1px)));
+}
+.Confetti:nth-child(52) {
+  --pos-x: calc(1 * 1vw);
+  --pos-y: calc(58 * 1vh);
+  --z: calc(-19473 * 1px);
+  --pos-z: var(--z, calc(5 * 1px));
+  --skew: calc(-12 * 1deg);
+  --rotate3d: rotate3d(-1, -2, -2, calc(282 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(53) {
+  --pos-x: calc(42 * 1vw);
+  --pos-y: calc(41 * 1vh);
+  --z: calc(-19099 * 1px);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(-20 * 1deg);
+  --rotate3d: rotate3d(1, -1, 1, calc(23 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(54) {
+  --pos-x: calc(84 * 1vw);
+  --pos-y: calc(28 * 1vh);
+  --z: calc(-22535 * 1px);
+  --pos-z: var(--z, calc(-4 * 1px));
+  --skew: calc(-30 * 1deg);
+  --rotate3d: rotate3d(-1, 1, 2, calc(167 * 1deg));
+  --translateZ: translateZ(var(--z, calc(0 * 1px)));
+}
+.Confetti:nth-child(55) {
+  --pos-x: calc(100 * 1vw);
+  --pos-y: calc(42 * 1vh);
+  --z: calc(-18380 * 1px);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(-9 * 1deg);
+  --rotate3d: rotate3d(-1, -2, -1, calc(151 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(56) {
+  --pos-x: calc(93 * 1vw);
+  --pos-y: calc(34 * 1vh);
+  --z: calc(-27682 * 1px);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(-1, -1, -2, calc(217 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(57) {
+  --pos-x: calc(33 * 1vw);
+  --pos-y: calc(37 * 1vh);
+  --z: calc(-4295 * 1px);
+  --pos-z: var(--z, calc(-7 * 1px));
+  --skew: calc(20 * 1deg);
+  --rotate3d: rotate3d(0, 2, 0, calc(136 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-1 * 1px)));
+}
+.Confetti:nth-child(58) {
+  --pos-x: calc(27 * 1vw);
+  --pos-y: calc(26 * 1vh);
+  --z: calc(-21902 * 1px);
+  --pos-z: var(--z, calc(0 * 1px));
+  --skew: calc(-17 * 1deg);
+  --rotate3d: rotate3d(0, 1, -2, calc(173 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(59) {
+  --pos-x: calc(14 * 1vw);
+  --pos-y: calc(91 * 1vh);
+  --z: calc(-1332 * 1px);
+  --pos-z: var(--z, calc(2 * 1px));
+  --skew: calc(22 * 1deg);
+  --rotate3d: rotate3d(0, 1, -1, calc(47 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(60) {
+  --pos-x: calc(30 * 1vw);
+  --pos-y: calc(34 * 1vh);
+  --z: calc(-21721 * 1px);
+  --pos-z: var(--z, calc(8 * 1px));
+  --skew: calc(14 * 1deg);
+  --rotate3d: rotate3d(-1, -2, 1, calc(131 * 1deg));
+  --translateZ: translateZ(var(--z, calc(8 * 1px)));
+}
+.Confetti:nth-child(61) {
+  --pos-x: calc(62 * 1vw);
+  --pos-y: calc(65 * 1vh);
+  --z: calc(-32472 * 1px);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(-11 * 1deg);
+  --rotate3d: rotate3d(1, -1, 2, calc(315 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-1 * 1px)));
+}
+.Confetti:nth-child(62) {
+  --pos-x: calc(86 * 1vw);
+  --pos-y: calc(26 * 1vh);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(-11 * 1deg);
+  --rotate3d: rotate3d(-1, 0, 2, calc(6 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-6 * 1px)));
+}
+.Confetti:nth-child(63) {
+  --pos-x: calc(84 * 1vw);
+  --pos-y: calc(84 * 1vh);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(28 * 1deg);
+  --rotate3d: rotate3d(2, 0, -2, calc(93 * 1deg));
+  --translateZ: translateZ(var(--z, calc(6 * 1px)));
+}
+.Confetti:nth-child(64) {
+  --pos-x: calc(60 * 1vw);
+  --pos-y: calc(83 * 1vh);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(1, 1, 2, calc(42 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-1 * 1px)));
+}
+.Confetti:nth-child(65) {
+  --pos-x: calc(74 * 1vw);
+  --pos-y: calc(18 * 1vh);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(-7 * 1deg);
+  --rotate3d: rotate3d(-1, -2, -1, calc(286 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(66) {
+  --pos-x: calc(4 * 1vw);
+  --pos-y: calc(100 * 1vh);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(27 * 1deg);
+  --rotate3d: rotate3d(2, 2, 0, calc(165 * 1deg));
+  --translateZ: translateZ(var(--z, calc(1 * 1px)));
+}
+.Confetti:nth-child(67) {
+  --pos-x: calc(27 * 1vw);
+  --pos-y: calc(68 * 1vh);
+  --pos-z: var(--z, calc(4 * 1px));
+  --skew: calc(-4 * 1deg);
+  --rotate3d: rotate3d(-1, -1, -1, calc(191 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(68) {
+  --pos-x: calc(54 * 1vw);
+  --pos-y: calc(96 * 1vh);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(-28 * 1deg);
+  --rotate3d: rotate3d(-2, -2, 1, calc(15 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-10 * 1px)));
+}
+.Confetti:nth-child(69) {
+  --pos-x: calc(60 * 1vw);
+  --pos-y: calc(27 * 1vh);
+  --pos-z: var(--z, calc(-8 * 1px));
+  --skew: calc(14 * 1deg);
+  --rotate3d: rotate3d(-2, 2, 0, calc(321 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-6 * 1px)));
+}
+.Confetti:nth-child(70) {
+  --pos-x: calc(23 * 1vw);
+  --pos-y: calc(89 * 1vh);
+  --pos-z: var(--z, calc(-8 * 1px));
+  --skew: calc(18 * 1deg);
+  --rotate3d: rotate3d(1, 1, 1, calc(343 * 1deg));
+  --translateZ: translateZ(var(--z, calc(4 * 1px)));
+}
+.Confetti:nth-child(71) {
+  --pos-x: calc(6 * 1vw);
+  --pos-y: calc(100 * 1vh);
+  --pos-z: var(--z, calc(3 * 1px));
+  --skew: calc(-18 * 1deg);
+  --rotate3d: rotate3d(2, -2, 0, calc(141 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-10 * 1px)));
+}
+.Confetti:nth-child(72) {
+  --pos-x: calc(63 * 1vw);
+  --pos-y: calc(73 * 1vh);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(-5 * 1deg);
+  --rotate3d: rotate3d(1, -2, 2, calc(94 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-9 * 1px)));
+}
+.Confetti:nth-child(73) {
+  --pos-x: calc(90 * 1vw);
+  --pos-y: calc(89 * 1vh);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(-2, -2, -1, calc(113 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(74) {
+  --pos-x: calc(38 * 1vw);
+  --pos-y: calc(14 * 1vh);
+  --pos-z: var(--z, calc(3 * 1px));
+  --skew: calc(14 * 1deg);
+  --rotate3d: rotate3d(-1, 2, 0, calc(359 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti:nth-child(75) {
+  --pos-x: calc(75 * 1vw);
+  --pos-y: calc(50 * 1vh);
+  --pos-z: var(--z, calc(-7 * 1px));
+  --skew: calc(8 * 1deg);
+  --rotate3d: rotate3d(2, -1, -1, calc(344 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(76) {
+  --pos-x: calc(0 * 1vw);
+  --pos-y: calc(15 * 1vh);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(24 * 1deg);
+  --rotate3d: rotate3d(-2, 1, 1, calc(182 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(77) {
+  --pos-x: calc(46 * 1vw);
+  --pos-y: calc(18 * 1vh);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(-21 * 1deg);
+  --rotate3d: rotate3d(2, 0, 0, calc(69 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-4 * 1px)));
+}
+.Confetti:nth-child(78) {
+  --pos-x: calc(99 * 1vw);
+  --pos-y: calc(55 * 1vh);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(29 * 1deg);
+  --rotate3d: rotate3d(1, 0, -1, calc(47 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-3 * 1px)));
+}
+.Confetti:nth-child(79) {
+  --pos-x: calc(95 * 1vw);
+  --pos-y: calc(20 * 1vh);
+  --pos-z: var(--z, calc(9 * 1px));
+  --skew: calc(-23 * 1deg);
+  --rotate3d: rotate3d(0, -2, 0, calc(163 * 1deg));
+  --translateZ: translateZ(var(--z, calc(7 * 1px)));
+}
+.Confetti:nth-child(80) {
+  --pos-x: calc(45 * 1vw);
+  --pos-y: calc(21 * 1vh);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(20 * 1deg);
+  --rotate3d: rotate3d(0, 0, -1, calc(324 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(81) {
+  --pos-x: calc(58 * 1vw);
+  --pos-y: calc(80 * 1vh);
+  --pos-z: var(--z, calc(-4 * 1px));
+  --skew: calc(-19 * 1deg);
+  --rotate3d: rotate3d(1, 0, -1, calc(54 * 1deg));
+  --translateZ: translateZ(var(--z, calc(1 * 1px)));
+}
+.Confetti:nth-child(82) {
+  --pos-x: calc(89 * 1vw);
+  --pos-y: calc(47 * 1vh);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(-11 * 1deg);
+  --rotate3d: rotate3d(1, 2, 0, calc(49 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(83) {
+  --pos-x: calc(86 * 1vw);
+  --pos-y: calc(45 * 1vh);
+  --pos-z: var(--z, calc(3 * 1px));
+  --skew: calc(-13 * 1deg);
+  --rotate3d: rotate3d(-2, 2, 0, calc(343 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(84) {
+  --pos-x: calc(19 * 1vw);
+  --pos-y: calc(58 * 1vh);
+  --pos-z: var(--z, calc(-10 * 1px));
+  --skew: calc(11 * 1deg);
+  --rotate3d: rotate3d(2, 0, -1, calc(263 * 1deg));
+  --translateZ: translateZ(var(--z, calc(3 * 1px)));
+}
+.Confetti:nth-child(85) {
+  --pos-x: calc(80 * 1vw);
+  --pos-y: calc(48 * 1vh);
+  --pos-z: var(--z, calc(-6 * 1px));
+  --skew: calc(-16 * 1deg);
+  --rotate3d: rotate3d(0, 1, -2, calc(236 * 1deg));
+  --translateZ: translateZ(var(--z, calc(3 * 1px)));
+}
+.Confetti:nth-child(86) {
+  --pos-x: calc(15 * 1vw);
+  --pos-y: calc(83 * 1vh);
+  --pos-z: var(--z, calc(10 * 1px));
+  --skew: calc(-25 * 1deg);
+  --rotate3d: rotate3d(1, 1, 1, calc(246 * 1deg));
+  --translateZ: translateZ(var(--z, calc(2 * 1px)));
+}
+.Confetti:nth-child(87) {
+  --pos-x: calc(16 * 1vw);
+  --pos-y: calc(13 * 1vh);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(1 * 1deg);
+  --rotate3d: rotate3d(-1, -2, 2, calc(271 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-8 * 1px)));
+}
+.Confetti:nth-child(88) {
+  --pos-x: calc(78 * 1vw);
+  --pos-y: calc(24 * 1vh);
+  --pos-z: var(--z, calc(7 * 1px));
+  --skew: calc(-1 * 1deg);
+  --rotate3d: rotate3d(1, 0, 0, calc(236 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(89) {
+  --pos-x: calc(79 * 1vw);
+  --pos-y: calc(38 * 1vh);
+  --pos-z: var(--z, calc(-1 * 1px));
+  --skew: calc(-25 * 1deg);
+  --rotate3d: rotate3d(0, -2, -2, calc(207 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-9 * 1px)));
+}
+.Confetti:nth-child(90) {
+  --pos-x: calc(47 * 1vw);
+  --pos-y: calc(10 * 1vh);
+  --pos-z: var(--z, calc(-3 * 1px));
+  --skew: calc(-24 * 1deg);
+  --rotate3d: rotate3d(1, 1, 1, calc(313 * 1deg));
+  --translateZ: translateZ(var(--z, calc(6 * 1px)));
+}
+.Confetti:nth-child(91) {
+  --pos-x: calc(49 * 1vw);
+  --pos-y: calc(29 * 1vh);
+  --pos-z: var(--z, calc(-2 * 1px));
+  --skew: calc(16 * 1deg);
+  --rotate3d: rotate3d(2, 1, -2, calc(4 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti:nth-child(92) {
+  --pos-x: calc(48 * 1vw);
+  --pos-y: calc(32 * 1vh);
+  --z: calc(3635 * 1px);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(3 * 1deg);
+  --rotate3d: rotate3d(-1, 0, 1, calc(306 * 1deg));
+  --translateZ: translateZ(var(--z, calc(9 * 1px)));
+}
+.Confetti:nth-child(93) {
+  --pos-x: calc(16 * 1vw);
+  --pos-y: calc(51 * 1vh);
+  --z: calc(3322 * 1px);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(15 * 1deg);
+  --rotate3d: rotate3d(1, 2, -1, calc(161 * 1deg));
+  --translateZ: translateZ(var(--z, calc(2 * 1px)));
+}
+.Confetti:nth-child(94) {
+  --pos-x: calc(74 * 1vw);
+  --pos-y: calc(71 * 1vh);
+  --z: calc(31217 * 1px);
+  --pos-z: var(--z, calc(4 * 1px));
+  --skew: calc(-2 * 1deg);
+  --rotate3d: rotate3d(-1, 1, 2, calc(12 * 1deg));
+  --translateZ: translateZ(var(--z, calc(0 * 1px)));
+}
+.Confetti:nth-child(95) {
+  --pos-x: calc(69 * 1vw);
+  --pos-y: calc(43 * 1vh);
+  --z: calc(21480 * 1px);
+  --pos-z: var(--z, calc(-9 * 1px));
+  --skew: calc(-24 * 1deg);
+  --rotate3d: rotate3d(-2, -1, 2, calc(318 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti:nth-child(96) {
+  --pos-x: calc(71 * 1vw);
+  --pos-y: calc(10 * 1vh);
+  --z: calc(36942 * 1px);
+  --pos-z: var(--z, calc(7 * 1px));
+  --skew: calc(8 * 1deg);
+  --rotate3d: rotate3d(1, 1, -2, calc(13 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-7 * 1px)));
+}
+.Confetti:nth-child(97) {
+  --pos-x: calc(72 * 1vw);
+  --pos-y: calc(1 * 1vh);
+  --z: calc(37492 * 1px);
+  --pos-z: var(--z, calc(5 * 1px));
+  --skew: calc(11 * 1deg);
+  --rotate3d: rotate3d(-1, 1, -1, calc(350 * 1deg));
+  --translateZ: translateZ(var(--z, calc(5 * 1px)));
+}
+.Confetti:nth-child(98) {
+  --pos-x: calc(15 * 1vw);
+  --pos-y: calc(35 * 1vh);
+  --z: calc(23019 * 1px);
+  --pos-z: var(--z, calc(6 * 1px));
+  --skew: calc(8 * 1deg);
+  --rotate3d: rotate3d(0, 1, -2, calc(114 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-2 * 1px)));
+}
+.Confetti:nth-child(99) {
+  --pos-x: calc(68 * 1vw);
+  --pos-y: calc(54 * 1vh);
+  --z: calc(8899 * 1px);
+  --pos-z: var(--z, calc(5 * 1px));
+  --skew: calc(-5 * 1deg);
+  --rotate3d: rotate3d(0, -2, 1, calc(273 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-1 * 1px)));
+}
+.Confetti:nth-child(100) {
+  --pos-x: calc(99 * 1vw);
+  --pos-y: calc(44 * 1vh);
+  --z: calc(3534 * 1px);
+  --pos-z: var(--z, calc(-8 * 1px));
+  --skew: calc(28 * 1deg);
+  --rotate3d: rotate3d(-2, 2, 0, calc(247 * 1deg));
+  --translateZ: translateZ(var(--z, calc(-8 * 1px)));
+}
+.Confetti:nth-child(101) {
+  --pos-x: calc(92 * 1vw);
+  --pos-y: calc(45 * 1vh);
+  --z: calc(18141 * 1px);
+  --pos-z: var(--z, calc(1 * 1px));
+  --skew: calc(15 * 1deg);
+  --rotate3d: rotate3d(1, -1, -1, calc(261 * 1deg));
+  --translateZ: translateZ(var(--z, calc(10 * 1px)));
+}
+.Confetti--backDepth {
+  z-index: -1;
+  opacity: .3;
+}
+.Confetti--midDepth, .Confetti--frontDepth {
+  z-index: 3;
+}
+.Confetti--frontDepth .Confetti-filter {
+  -webkit-filter: blur(4px);
+          filter: blur(4px);
+}
+.Confetti--frontDepth.Confetti--frontDepth {
+  --rotation: rotate(var(--pos-deg));
+  --skewing: skew(var(--skew));
+}
+
+.Confetti:nth-child(2n) {
+  --🎊: #48E5C2;
+}
+.Confetti:nth-child(3n) {
+  --🎊: #F0544F;
+}
+.Confetti:nth-child(4n) {
+  --🎊: #2AB7CA;
+}
+.Confetti:nth-child(5n) {
+  --🎊: #FED766;
+}
+
+.Image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  -webkit-perspective: 2000;
+          perspective: 2000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}

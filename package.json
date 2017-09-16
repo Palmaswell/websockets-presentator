@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./server.js",
-    "build-css": "node-sass --include-path scss src/main.scss src/main.css",
+    "build-css": "node-sass --include-path scss src/index.scss src/index.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "deploy": "npx now"
   },
@@ -18,7 +18,6 @@
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "ambient-light-sensor": "0.0.1",
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0"
   }

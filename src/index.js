@@ -1,44 +1,61 @@
-function trainedPup () {
+function trainedLion () {
   const socket = io();
   const root = document.querySelector(':root');
-  const vpWidth = root.getClientRects()[0].width;
-  const vpHeight = root.getClientRects()[0].height;
 
-  let ticking = false;
+  const orientation = {
+    x: 0,
+    y: 0
+  }
+
+  const written = {
+    x: 0,
+    y: 0
+  }
 
   const handleMotion = e => {
-    const orientation = {
-      x: e.beta,
-      y: e.gamma
-    }
-    handleTick(orientation);
+    orientation.x = Math.round(e.beta * 100) / 100;
+    orientation.y = Math.round(e.gamma * 100) / 100;
   }
 
-  const handleTick = (orientation) => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => {
-        update(orientation);
-      });
+  const update = () => {
+    if (orientation.x !== written.x) {
+      const maxDegX = orientation.x < 0 ? -180 : 180;
+      written.x = orientation.x;
+
+      root.style.setProperty('--y', (orientation.x / maxDegX) * 2 - 1);
     }
-  };
 
-  const update = (orientation) => {
-    socket.on('orientation', orientation => {
+    if (orientation.y !== written.y) {
+      const maxDegY = orientation.y < 0 ? -90 : 90;
 
-      root.style.setProperty('--x', orientation.x / 2);
-      root.style.setProperty('--y', orientation.y);
+      root.style.setProperty('--x', (orientation.y / maxDegY) * 2 - 1);
+    }
 
-      console.log(orientation);
+    if (orientation.x !== written.x
+      || orientation.y !== written.y) {
+      socket.emit('orientation', orientation);
+    }
 
-      ticking = false;
-    });
-    socket.emit('orientation', orientation);
+    requestAnimationFrame(update);
   }
+
+  update();
 
   window.addEventListener('deviceorientation',
-    handleMotion, { passive: true }
+    handleMotion, { capture: true,  passive: true }
   );
+  socket.on('orientation', (data) => {
+    orientation.x = data.x;
+    orientation.y = data.y;
+  });
+
+  window.addEventListener('mousemove', e => {
+    const x = e.pageX / window.innerWidth * 2 - 1;
+    const y = e.pageY / window.innerHeight * 2 - 1;
+    root.style.setProperty('--x', x);
+    root.style.setProperty('--y', y);
+  },
+  { capture: true,  passive: true });
 };
 
-trainedPup();
+trainedLion();
