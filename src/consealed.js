@@ -1,6 +1,8 @@
 function reveal () {
   const root = document.querySelector(':root');
   const svg = document.querySelector('.js_svg');
+  const styles = window.getComputedStyle(root);
+  const hexPaleRobin = styles.getPropertyValue('--hex-pale-robin');
 
   const vp = {
     width: root.getClientRects()[0].width,
@@ -35,14 +37,14 @@ function reveal () {
   const update = () => {
     if (position.x !== written.x) {
       written.x = position.x;
-      lerp.x += ((position.x - lerp.x) * 0.06);
+      lerp.x += ((position.x - lerp.x) * 0.4);
 
       root.style.setProperty('--cx', lerp.x);
     }
 
     if (position.y !== written.y) {
       written.y = position.y;
-      lerp.y += ((position.y - lerp.y) * 0.06);
+      lerp.y += ((position.y - lerp.y) * 0.4);
 
       root.style.setProperty('--cy', lerp.y);
     }
@@ -50,8 +52,17 @@ function reveal () {
   };
   update();
 
+  const toggleColor = () => {
+    if (styles.getPropertyValue('--hex-headline') === hexPaleRobin) {
+      root.style.setProperty('--hex-headline', '#0F0D11');
+      return;
+    };
+    root.style.setProperty('--hex-headline', hexPaleRobin);
+  };
+
   root.addEventListener('mousemove', handleMove,
     { passive: true });
+  root.addEventListener('click', toggleColor);
 };
 
 reveal();
