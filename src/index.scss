@@ -3,83 +3,152 @@
   @return #{'#{$randomNum}'};
 }
 
+:root {
+  --theme-invert: 0;
+
+  //-- Default White Ghost Sand rgb(247, 252, 255)
+  //-- Secondary Outer Space rgb(66, 75, 84)
+  //-- Secondary color: LIGHT CRIMSON rgb(247, 111, 142)
+
+  --rgba-shadows: rgba(
+    calc(247 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 247),
+    calc(111 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 252),
+    calc(242 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 255),
+  1);
+}
+
 .Galaxy {
-  --hex-galaxy: #020e13;
-  background-color: var(--hex-galaxy, #000000);
+  //-- Default Color Rich Black rgb(2, 14, 19)
+  //-- Secondary White Ghost Sand rgb(247, 252, 255)
+
+  --rgba-galaxy: rgba(
+    calc(245 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 2),
+    calc(238 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 14),
+    calc(237 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 19),
+  1);
+  background-color: var(--rgba-galaxy);
   perspective: 50000px;
+
+  transition: background .8s linear;
 
   &-space {
     position: relative;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
-    perspective: 5000px;
+    perspective: 3000px;
+    transform-origin: center;
+    // transform: translatex(calc(var(--x) * 100px));
+    transform: translate3d(
+      calc(var(--x) * 2vw),
+      calc(var(--y) * 2vh), 0);
+    transition: transform .2s linear;
 
     :nth-child(n) {
       transform-style: preserve-3d;
     }
   }
+
+  &-headline {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    color: var(--rgba-shadows);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: translatex(-50%);
+    transition: color .5s ease;
+  }
+
+  &-icon {
+    position: relative;
+    display: block;
+    font-size: 40px;
+    letter-spacing: 5px;
+    text-align: center;
+    text-shadow: 0 0 30px var(--rgba-shadows);
+
+    &::after {
+      content: "--";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      font-size: 42px;
+      text-shadow: 0 0 30px var(--rgba-shadows);
+      filter: blur(2px) brightness(1);
+    }
+  }
 }
 
 .Star {
-  --hex-star: #f7fcff;
-  --hex-star-shim: #004E98;
-  --radius: 2;
+  --radius: 3;
+
+  //-- Default Color: Usafa Blue rgb(0, 78, 152)
+  //-- Secondary Color: AIR FORCE BLUE (USAF) rgb(0, 63, 145)
+  --rgba-star: rgba(
+    0,
+    calc(63 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 78),
+    calc(78 * var(--theme-invert) +
+      (1 - var(--theme-invert)) * 152),
+    1);
 
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: -1;
   width: calc(var(--radius) * 2px);
   height: calc(var(--radius) * 2px);
   border-radius: 50%;
-  background-color: var(--hex-star, #F0F3BD);
+  background-color: var(--rgba-star);
   transform:
     translate3d(calc(10vw * var(--sin)), 0,
       calc(100vw * var(--cos)))
     translate3d(var(--x), var(--y), var(--z));
-  filter: blur(.5px);
+  transition: background .8s linear;
+
 
   @for $n from 0 to 300 {
     &:nth-child(#{$n + 1}) {
       --x: calc(#{cssRandom(0, 100)} * 1vw);
       --y: calc(#{cssRandom(0, 100)} * 1vh);
-      --z: calc(#{cssRandom(-10000, 10000)} * 1px);
+      --z: calc(#{cssRandom(-9000, 9000)} * 1px);
     }
   }
 
-  &::before,
-  &::after {
+  &::before {
+    --radius: 5;
+
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
+    opacity: .6;
+    z-index: 1;
     width: calc(var(--radius) * 2px);
     height: calc(var(--radius) * 2px);
     border-radius: 50%;
+    background: var(--rgba-star);
+    box-shadow: 0 0 20px var(--rgba-ghost-white);
     transform: translate(-50%, -50%);
-  }
-
-  &::before {
-    --radius: 2;
-
-    z-index: -1;
-    background-color: var(--hex-star-shim);
-    filter: opacity(.7) brightness(4) blur(3px);
-  }
-
-  &::after {
-    --radius: 3;
-
-    z-index: -2;
-    background-color: var(--hex-star-shim);
-    filter: opacity(.5) brightness(2) blur(5px);
+    filter: brightness(3) blur(4px);
   }
 }
 
 //-- Normalizing some stuff
 body {
   margin: 0;
+  font-family: 'Exo', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }

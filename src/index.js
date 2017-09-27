@@ -1,25 +1,51 @@
 function galaxy () {
   const root = document.querySelector(':root');
+  const vpWidth = root.getClientRects()[0].width;
+  const vpHeight = root.getClientRects()[0].height;
+
   const motion = {
-    time: 0,
-    step: 0.01
+    x: 0,
+    y: 0
   };
-  const angle = {
-    sin: 0,
-    cos: 0
+  const written = {
+    x: 0,
+    y: 0
   };
+  let time = 0;
+
+  const handleMouseMove = (e) => {
+    motion.x = ~~(((e.clientX / vpWidth) * 2 - 1) * 100) / 100;
+    motion.y = ~~(((e.clientY / vpHeight) * 2 - 1) * 100) / 100;
+  }
 
   const update = () => {
-    motion.time = (motion.time + 0.001) % 1;
-    angle.sin = Math.sin(motion.time * Math.PI * 2);
-    angle.cos = Math.cos(motion.time * Math.PI * 2);
+    //-- Stars Rotation
+    time = (time + 0.001) % 1;
+    root.style.setProperty('--sin',
+      Math.round(Math.sin(time * Math.PI * 2) * 1000) / 1000
+    );
+    root.style.setProperty('--cos',
+      Math.round(Math.cos(time * Math.PI * 2) * 1000) / 1000
+    );
 
-    root.style.setProperty('--sin', angle.sin);
-    root.style.setProperty('--cos', angle.cos);
+    //-- Handle Motion
+    if (written.x !== motion.x) {
+      written.x = motion.x;
+      root.style.setProperty('--x', motion.x)
+    }
+    if (written.y !== motion.y) {
+      written.y = motion.y;
+      root.style.setProperty('--y', motion.y);
+    }
+
     requestAnimationFrame(update);
   };
 
   update();
+
+  root.addEventListener('mousemove',
+    handleMouseMove,
+    { capture: true, passive: true });
 };
 
 galaxy();
