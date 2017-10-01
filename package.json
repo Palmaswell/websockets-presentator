@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./server.js",
     "build-css": "node-sass --include-path scss src/index.scss src/index.css",
+    "build-css2": "node-sass --include-path scss src/consealed.scss src/consealed.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "deploy": "npx now"
   },
