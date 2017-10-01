@@ -60,9 +60,16 @@ function reveal () {
     root.style.setProperty('--hex-headline', hexPaleRobin);
   };
 
+  const handleResize = () => {
+    vp.width = root.getClientRects()[0].width;
+    vp.height = root.getClientRects()[0].height;
+    console.log(vp);
+  }
+
   root.addEventListener('mousemove', handleMove,
     { passive: true });
   root.addEventListener('click', toggleColor);
+  window.addEventListener('resize', handleResize);
 };
 
 reveal();

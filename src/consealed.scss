@@ -87,7 +87,12 @@
   }
 
   &-copy {
-    margin-top: -10vh;
+    position: absolute;
+    right: 0;
+    bottom: 40px;
+    left: 0;
+    z-index: 3;
+    margin: auto;
     letter-spacing: 2px;
     text-align: center;
   }
@@ -104,6 +109,7 @@ body {
   margin: 0;
   color: var(--hex-white-smoke);
   font-family: 'Raleway', sans-serif;
-  -webkit-font-smoothing: antialised;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
