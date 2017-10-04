@@ -44,8 +44,8 @@
     perspective: 3000px;
     transform-origin: center;
     transform: translate3d(
-      calc(var(--x) * 2vw),
-      calc(var(--y) * 2vh), 0);
+      calc(var(--x) * 5vw),
+      calc(var(--y) * 5vh), 0);
     transition: transform .2s linear;
 
     :nth-child(n) {

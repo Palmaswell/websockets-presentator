@@ -13,9 +13,8 @@ function galaxy () {
     x: 0,
     y: 0
   };
-  let time = 0;
 
-  console.log(socket);
+  let time = 0;
 
   const handleMouseMove = e => {
     motion.x = ~~(((e.clientX / vpWidth) * 2 - 1) * 100) / 100;
@@ -23,7 +22,9 @@ function galaxy () {
   }
 
   const handleOrientation = e => {
-    motion.x = Math.round(e.gamma * 100) / 100;
+    motion.x = ~~(((e.alpha / 360) * 2 - 1) * 100) / 100;
+    motion.y = ~~(((e.gamma / 180) * 2 - 1) * 100) / 100;
+
   }
 
   const update = () => {
@@ -40,11 +41,15 @@ function galaxy () {
     if (written.x !== motion.x) {
       written.x = motion.x;
       root.style.setProperty('--x', motion.x);
-      console.log(motion.x);
     }
+
     if (written.y !== motion.y) {
       written.y = motion.y;
       root.style.setProperty('--y', motion.y);
+    }
+
+    if (written.x !== motion.x || written.y !== motion.y) {
+      socket.emit('motion', motion);
     }
 
     requestAnimationFrame(update);
@@ -55,6 +60,11 @@ function galaxy () {
   root.addEventListener('mousemove',
     handleMouseMove,
     { capture: true, passive: true });
+
+  socket.on('motion', data => {
+    motion.x = data.x;
+    motion.y = data.y;
+  });
 
   window.addEventListener('deviceorientation',
     handleOrientation,

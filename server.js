@@ -15,8 +15,8 @@ io.on('connection', socket => {
     io.emit('orientation', data)
     console.log(data);
   });
-  socket.on('position', data => {
-    io.emit('position', data)
+  socket.on('motion', data => {
+    io.emit('motion', data)
     console.log(data);
   })
 });
