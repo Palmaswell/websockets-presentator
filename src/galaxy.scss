@@ -43,7 +43,6 @@
     height: 100vh;
     perspective: 3000px;
     transform-origin: center;
-    // transform: translatex(calc(var(--x) * 100px));
     transform: translate3d(
       calc(var(--x) * 2vw),
       calc(var(--y) * 2vh), 0);
@@ -90,18 +89,7 @@
 }
 
 .Star {
-  --radius: 3;
-
-  //-- Default Color: Usafa Blue rgb(0, 78, 152)
-  //-- Secondary Color: AIR FORCE BLUE (USAF) rgb(0, 63, 145)
-  --rgba-star: rgba(
-    0,
-    calc(63 * var(--theme-invert) +
-      (1 - var(--theme-invert)) * 78),
-    calc(78 * var(--theme-invert) +
-      (1 - var(--theme-invert)) * 152),
-    1);
-
+  --radius: 8;
   position: absolute;
   top: 0;
   left: 0;
@@ -109,38 +97,38 @@
   width: calc(var(--radius) * 2px);
   height: calc(var(--radius) * 2px);
   border-radius: 50%;
-  background-color: var(--rgba-star);
   transform:
     translate3d(calc(10vw * var(--sin)), 0,
       calc(100vw * var(--cos)))
     translate3d(var(--x), var(--y), var(--z));
   transition: background .8s linear;
 
+  background-image: radial-gradient(circle at center,
+      rgba(104, 182, 255, .7) 0%,
+      rgba(104, 182, 255, 0) 30%),
+      radial-gradient(circle at center,
+      rgba(212, 229, 244, .6) 20%,
+      rgba(212, 229, 244, 0) 32%),
+      radial-gradient(circle at center,
+      rgba(249, 252, 255, .3) 30%,
+      rgba(249, 252, 255, 0) 60%);
 
-  @for $n from 0 to 300 {
+  // background-image: radial-gradient(circle at center,
+  //     rgba(33, 79, 57, .7) -10%,
+  //     rgba(33, 79, 57, 0) 30%),
+  //     radial-gradient(circle at center,
+  //     rgba(0, 78, 152, .6) 20%,
+  //     rgba(0, 78, 152, 0) 33%),
+  //     radial-gradient(circle at center,
+  //     rgba(132, 183, 232, .3) 30%,
+  //     rgba(132, 183, 232, 0) 70%);
+
+  @for $n from 0 to 250 {
     &:nth-child(#{$n + 1}) {
       --x: calc(#{cssRandom(0, 100)} * 1vw);
       --y: calc(#{cssRandom(0, 100)} * 1vh);
       --z: calc(#{cssRandom(-9000, 9000)} * 1px);
     }
-  }
-
-  &::before {
-    --radius: 5;
-
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    opacity: .6;
-    z-index: 1;
-    width: calc(var(--radius) * 2px);
-    height: calc(var(--radius) * 2px);
-    border-radius: 50%;
-    background: var(--rgba-star);
-    box-shadow: 0 0 20px var(--rgba-ghost-white);
-    transform: translate(-50%, -50%);
-    filter: brightness(3) blur(4px);
   }
 }
 

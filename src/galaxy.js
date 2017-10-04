@@ -13,9 +13,13 @@ function galaxy () {
   };
   let time = 0;
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = e => {
     motion.x = ~~(((e.clientX / vpWidth) * 2 - 1) * 100) / 100;
     motion.y = ~~(((e.clientY / vpHeight) * 2 - 1) * 100) / 100;
+  }
+
+  const handleOrientation = e => {
+    console.log(e.gamma);
   }
 
   const update = () => {
@@ -46,6 +50,9 @@ function galaxy () {
   root.addEventListener('mousemove',
     handleMouseMove,
     { capture: true, passive: true });
+  window.addEventListener('deviceorientation',
+    handleOrientation,
+    { passive: true });
 };
 
 galaxy();
