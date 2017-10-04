@@ -21,10 +21,10 @@
           transform-origin: center;
   -webkit-transform: translate3d(calc(var(--x) * 5vw), calc(var(--y) * 5vh), 0);
           transform: translate3d(calc(var(--x) * 5vw), calc(var(--y) * 5vh), 0);
-  -webkit-transition: -webkit-transform .6s linear;
-  transition: -webkit-transform .6s linear;
-  transition: transform .6s linear;
-  transition: transform .6s linear, -webkit-transform .6s linear;
+  -webkit-transition: -webkit-transform 1s linear;
+  transition: -webkit-transform 1s linear;
+  transition: transform 1s linear;
+  transition: transform 1s linear, -webkit-transform 1s linear;
 }
 .Galaxy-space :nth-child(n) {
   -webkit-transform-style: preserve-3d;

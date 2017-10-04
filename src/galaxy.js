@@ -23,7 +23,7 @@ function galaxy () {
 
   const handleOrientation = e => {
     motion.x = ~~(((e.alpha / 360) * 2 - 1) * 100) / 100;
-    motion.y = ~~(((e.gamma / 180) * 2 - 1) * 100) / 100;
+    motion.y = ~~(((e.beta / 180) * 2 - 1) * 100) / 100;
 
   }
 
@@ -38,17 +38,18 @@ function galaxy () {
     );
 
     //-- Handle Motion
-    if (written.x !== motion.x) {
-      written.x = motion.x;
+    if (motion.x !== written.x) {
+      written.x = motion.x + .001;
       root.style.setProperty('--x', motion.x);
     }
 
-    if (written.y !== motion.y) {
-      written.y = motion.y;
+    if (motion.y !== written.y) {
+      written.y = motion.y + .001;
       root.style.setProperty('--y', motion.y);
     }
 
-    if (written.x !== motion.x || written.y !== motion.y) {
+
+    if (motion.x !== written.x || motion.y !== written.y) {
       socket.emit('motion', motion);
     }
 
