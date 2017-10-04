@@ -1,4 +1,6 @@
 function galaxy () {
+  const socket = io();
+
   const root = document.querySelector(':root');
   const vpWidth = root.getClientRects()[0].width;
   const vpHeight = root.getClientRects()[0].height;
@@ -13,13 +15,15 @@ function galaxy () {
   };
   let time = 0;
 
+  console.log(socket);
+
   const handleMouseMove = e => {
     motion.x = ~~(((e.clientX / vpWidth) * 2 - 1) * 100) / 100;
     motion.y = ~~(((e.clientY / vpHeight) * 2 - 1) * 100) / 100;
   }
 
   const handleOrientation = e => {
-    console.log(e.gamma);
+    motion.x = Math.round(e.gamma * 100) / 100;
   }
 
   const update = () => {
@@ -35,7 +39,8 @@ function galaxy () {
     //-- Handle Motion
     if (written.x !== motion.x) {
       written.x = motion.x;
-      root.style.setProperty('--x', motion.x)
+      root.style.setProperty('--x', motion.x);
+      console.log(motion.x);
     }
     if (written.y !== motion.y) {
       written.y = motion.y;
@@ -50,6 +55,7 @@ function galaxy () {
   root.addEventListener('mousemove',
     handleMouseMove,
     { capture: true, passive: true });
+
   window.addEventListener('deviceorientation',
     handleOrientation,
     { passive: true });
