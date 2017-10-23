@@ -1,0 +1,45 @@
+
+:root {
+  //-- Radius
+  --r: 140;
+  //-- SVG Circle Positioning
+  --cx: 960;
+  --cy: 540;
+}
+
+.Concealed-spot {
+  r: var(--r, 120);
+  cx: var(--cx);
+  cy: var(--cy);
+}
+
+
+
+.Concealed-spot {
+  --center-x: 960;
+  cx: var(--cx);
+  cy: var(--cy);
+  &:nth-of-type(1) {
+    --cx: calc(var(--center-x) - (var(--r) * 3));
+  }
+  ...
+}
+
+.Concealed-spot {
+  ...
+  &:nth-of-type(1) {
+    clip-path: url('#One');
+  }
+  ...
+}
+
+
+.Star {
+  transform:
+    translate3d(calc(10vw * var(--sin)), 0,
+      calc(100vw * var(--cos)))
+    translate3d(var(--x), var(--y), var(--z));
+}
+
+
+

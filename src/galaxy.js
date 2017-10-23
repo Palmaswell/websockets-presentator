@@ -38,20 +38,9 @@ function galaxy () {
     );
 
     //-- Handle Motion
-    if (motion.x !== written.x) {
-      written.x = motion.x + .001;
-      root.style.setProperty('--x', motion.x);
-    }
-
-    if (motion.y !== written.y) {
-      written.y = motion.y + .001;
-      root.style.setProperty('--y', motion.y);
-    }
-
-
-    if (motion.x !== written.x || motion.y !== written.y) {
-      socket.emit('motion', motion);
-    }
+    root.style.setProperty('--x', motion.x);
+    root.style.setProperty('--y', motion.y);
+    socket.emit('motion', motion);
 
     requestAnimationFrame(update);
   };
