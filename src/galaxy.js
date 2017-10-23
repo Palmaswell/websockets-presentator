@@ -22,8 +22,8 @@ function galaxy () {
   }
 
   const handleOrientation = e => {
-    motion.x = ~~((e.alpha / 360) * 100) / 100;
-    motion.y = ~~((e.beta / 180) * 100) / 100;
+    motion.x = ~~((e.alpha / 360) * 1000) / 1000;
+    motion.y = ~~((e.beta / 180) * 1000) / 1000;
   }
 
   const update = () => {
